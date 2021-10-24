@@ -1,0 +1,57 @@
+@startuml Geometry
+
+abstract GeometryFigure
+{
+    +GeometryFigure()
+    {abstract} +GetArea()
+}
+
+class Rectangle
+{
+    -_a
+    -_b
+    +sideA
+    +sideB
+    +GetArea()
+}
+class Square
+class Triangle
+{
+    -_a
+    -_b 
+    -_c
+    +sideA
+    +sideB
+    +sideC
+    -GetSemiPerimeter()
+    +GetArea()
+}
+class RightTriangle
+
+GeometryFigure <|-- Rectangle
+GeometryFigure <|-- Triangle
+Rectangle <|-- Square
+Triangle <|-- RightTriangle
+@enduml
+
+@startuml Writers
+interface ITypeWriter
+{
+    {method} +Write
+}
+interface IAreaWriter
+{
+    {method} +Write
+}
+
+class FileWriter
+{
+    -path
+}
+
+ITypeWriter <|.. ConsoleWriter
+IAreaWriter <|.. ConsoleWriter
+
+ITypeWriter <|.. FileWriter
+IAreaWriter <|.. FileWriter
+@enduml
